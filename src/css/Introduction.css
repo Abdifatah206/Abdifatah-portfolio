@@ -1,0 +1,30 @@
+
+.introduction {
+  display: inline-block;
+  padding-top: 10px;
+  padding-bottom: 50px;
+  padding-left: 2%;
+  padding-right: 2%;
+  font-size: 1.25em;
+  line-height: 1.6;
+}
+.myImage {
+  width: 20%;
+  margin-top:80px;
+  display: block;
+  border-radius: 50%;
+  border: 5px solid orange;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+}
+
+@media screen and (min-width: 1025px) {
+  .introduction {
+    width: 60%;
+    padding-top: 20px;
+    margin: auto;
+    font-size: 1.25em;
+    line-height: 1.6;
+  }
+}

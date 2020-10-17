@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import Nav from './components/Nav';
+import SlideShow from './components/SlideShow';
+import Resume from './components/Resume';
+import Footer from './components/Footer';
+import SideDrawer from './components/SideDrawer';
+import BackDrop from './components/BackDrop';
+import MementoCRM from './components/MementoCRM';
+import PotOgold from './components/PotOgold';
+import Floop from './components/Floop';
+import {HashRouter as Router, Route, Switch} from "react-router-dom";
+import './App.css'
 
-function App() {
+class App extends Component {
+  state = {
+    sideDrawerOpen: false
+  };
+  // this functions to handle the hamburguer button
+  drowerToggleClickHandler = () => {
+    this.setState((prevState) => {
+      return {sideDrawerOpen: !prevState.sideDrawerOpen};
+    });
+  };
+  // this functions handles backdrop layout
+  backDropClickHandler = () => {
+    this.setState({sideDrawerOpen: false});
+  }
+  render(){
+    let backDrop;
+    if(this.state.sideDrawerOpen){
+      backDrop = <BackDrop click={this.backDropClickHandler}/>
+    }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router >
+      <div className="App">
+      <Nav drowerClickHandler={this.drowerToggleClickHandler}/>
+      <SideDrawer show={this.state.sideDrawerOpen} click={this.backDropClickHandler}/>
+          {backDrop}
+        <Switch>
+            <Route path="/" exact component={SlideShow}/>
+            <Route path="/resume" component={Resume}/>
+            <Route path="/potOgold" component={PotOgold}/>
+            <Route path="/floop" component={Floop}/>
+            <Route path="/memento" component={MementoCRM}/>
+        </Switch>
+        <Footer />
+      </div>
+    </Router>
   );
+  }
 }
-
 export default App;
